@@ -1,0 +1,83 @@
+#include<iostream>
+using namespace std;
+
+void header(string isi[]) {
+    cout << "\n\tTugas Praktikum Algoritma Pemrograman             \n";
+    cout << "\t        Florensius Panca Gati                       \n";
+    cout << "\t              23343006                              \n";
+    cout << "******************************************************" << endl;
+    cout << "\n******************************************************\n";
+    cout << "*  Game Batu Gunting Kertas Lite                     *\n";
+    for (int a = 0; a < 3; a++) {
+        cout << "*  " << a+1 << ". " << isi[a] << "                                        *" << endl;
+    }
+    cout << "******************************************************" << endl;
+}
+
+int perbandingan(int player, int enemy) {
+    if(player == 1 && enemy == 2 || player == 2 && enemy == 3 || player == 3 && enemy == 1) {
+        return 1; //menang
+    } else if(player == enemy) {
+        return 2; //seri
+    } else {
+        return 3; //kalah
+    }
+}
+
+int main() {
+	string isi[3] = {"batu   ","gunting","kertas "};
+    string kondisi[3] = {"Menang","Seri","Kalah"};
+    int player, enemy, hasil;
+    int skorplayer = 0;
+    int skorenemy = 0;
+    bool loop = true;
+
+    do {
+        system("cls");
+        header(isi);
+        cout << "Masukkan Pilihan Anda : "; cin >> player;
+        enemy = rand() % 3;
+
+        if(player == 1 || player == 2 || player == 3) {
+
+            cout << "======================================================" << endl;
+            cout << "Anda       : " << isi[player-1] << endl;
+            cout << "Komputer   : " << isi[enemy-1] << endl;
+            cout << "======================================================" << endl;
+            cout << "======================================================" << endl;
+            hasil = perbandingan(player, enemy);
+            cout << "Anda Dinyatakan : " << kondisi[hasil-1] << endl;
+
+            if(hasil == 1) {
+                skorplayer++;
+            } else if(hasil == 2) {
+                //seri
+            } else {
+                skorenemy++;
+            }
+
+            cout << "Skor Anda     : " << skorplayer << endl;
+            cout << "Skor Komputer : " << skorenemy << endl;
+            cout << "======================================================" << endl;
+            cin.get();
+
+        } else if(player == 4) {
+
+            loop = false;
+            cin.get();
+
+        } else {
+
+            cout << "Dimohon Untuk Memasukkan Inputan Yang Tersedia.." << endl;
+            cin.get();
+
+        }
+      cin.get();
+    } while(loop);
+    cout << "======================================================" << endl;
+    cout << "Terimakasih telah menggunakan program!" << endl;
+    cout << "Kritik dan Saran Sangat Kami Nantikan!" << endl;
+    cout << "======================================================" << endl;
+    cin.get();
+    return 0;
+}
